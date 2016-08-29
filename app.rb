@@ -13,8 +13,9 @@ class App < Sinatra::Base
 
   # file upload
   post '/upload' do
-    # tempfile削除
-    # tempfile.close(true)
+    # aiff以外弾く
+    halt 415, 'aiffファイルを設定してください' unless params[:file][:type] == 'audio/aiff'
+
 
     aiff_path = "./aiff/"
     FileUtils.mkdir_p(aiff_path) unless FileTest.exist?(aiff_path)
@@ -27,13 +28,26 @@ class App < Sinatra::Base
       end
 
       # ここにshellを指定する
-      result = `echo 'hello'`
-      logger.info "create #{upload_file}"
+      # result = `echo "hello #{1 + 1}"`
+      result = `./honoka_ga_make_mix_human_voice.sh #{upload_file}`
+
+      if $? === 0
+        puts result
+        logger.info "create #{upload_file}"
+        logger.info "create #{upload_file}_all.aiff"
+      else
+        logger.warn result
+        halt 500, '失敗っす'
+      end
     rescue => e
       logger.warn e.message
       halt 500, '失敗っす'
     end
+
+    # response
+    status 200
+    content_type :json, :charset => 'utf-8'
     data =  { message: 'upload 成功'}
-    json data
+    data.to_json
   end
 end
