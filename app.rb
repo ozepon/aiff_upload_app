@@ -33,6 +33,7 @@ class App < Sinatra::Base
       logger.warn e.message
       halt 500, '失敗っす'
     end
-    'upload 成功'
+    data =  { message: 'upload 成功'}
+    json data
   end
 end
