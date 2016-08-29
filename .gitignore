@@ -2,6 +2,6 @@
 /.bundle/
 /aiff/
 /aiff_all/*
-/tmp/pids/*
-/tmp/sockets/*
-/log/*
+tmp/pids/*
+tmp/sockets/*
+log/*
