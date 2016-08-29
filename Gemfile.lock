@@ -3,6 +3,7 @@ GEM
   specs:
     backports (3.6.8)
     coderay (1.1.1)
+    kgio (2.10.0)
     logger (1.2.8)
     method_source (0.8.2)
     multi_json (1.12.1)
@@ -15,6 +16,7 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
+    raindrops (0.17.0)
     sinatra (1.4.7)
       rack (~> 1.5)
       rack-protection (~> 1.4)
@@ -32,6 +34,9 @@ GEM
     slop (3.6.0)
     temple (0.7.7)
     tilt (2.0.5)
+    unicorn (5.1.0)
+      kgio (~> 2.6)
+      raindrops (~> 0.7)
 
 PLATFORMS
   ruby
@@ -42,6 +47,7 @@ DEPENDENCIES
   sinatra
   sinatra-contrib
   slim
+  unicorn
 
 BUNDLED WITH
    1.12.5

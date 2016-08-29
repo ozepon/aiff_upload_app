@@ -1,3 +1,5 @@
+require 'json'
+
 class App < Sinatra::Base
   configure :development do
     register Sinatra::Reloader
@@ -14,7 +16,7 @@ class App < Sinatra::Base
   # file upload
   post '/upload' do
     # aiff以外弾く
-    halt 415, 'aiffファイルを設定してください' unless params[:file][:type] == 'audio/aiff'
+    halt 415, 'aiffファイルを設定してください' unless params[:file] and params[:file][:type] == 'audio/aiff'
 
 
     aiff_path = "./aiff/"
