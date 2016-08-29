@@ -1,0 +1,1 @@
+sudo nginx && bundle exec unicorn -c unicorn.rb -D

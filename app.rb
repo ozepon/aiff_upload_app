@@ -18,7 +18,6 @@ class App < Sinatra::Base
     # aiff以外弾く
     halt 415, 'aiffファイルを設定してください' unless params[:file] and params[:file][:type] == 'audio/aiff'
 
-
     aiff_path = "./aiff/"
     FileUtils.mkdir_p(aiff_path) unless FileTest.exist?(aiff_path)
 
