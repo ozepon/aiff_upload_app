@@ -3,7 +3,7 @@ class App < Sinatra::Base
     register Sinatra::Reloader
   end
 
-  logger = Logger.new('app.log')
+  logger = Logger.new('./log/app.log')
 
   # root
   get '/' do
