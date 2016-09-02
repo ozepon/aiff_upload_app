@@ -2,19 +2,19 @@
 # 引数にbeatとマージしたいaiffが入ったディレクトリを指定
 # ./tmpディレクトリにマージしたaiffファイルを配置
 
-BEAT1_LENGTH=`./soxi -s ./beat_aiff/beatsound_all1.aiff`
-BEAT2_LENGTH=`./soxi -s ./beat_aiff/beatsound_all2.aiff`
-BEAT3_LENGTH=`./soxi -s ./beat_aiff/beatsound_all3.aiff`
-BEAT4_LENGTH=`./soxi -s ./beat_aiff/beatsound_all4.aiff`
-BEAT7_LENGTH=`./soxi -s ./beat_aiff/beatsound_all7.aiff`
-BEAT8_LENGTH=`./soxi -s ./beat_aiff/beatsound_all8.aiff`
+BEAT1_LENGTH=`soxi -s ./beat_aiff/beatsound_all1.aiff`
+BEAT2_LENGTH=`soxi -s ./beat_aiff/beatsound_all2.aiff`
+BEAT3_LENGTH=`soxi -s ./beat_aiff/beatsound_all3.aiff`
+BEAT4_LENGTH=`soxi -s ./beat_aiff/beatsound_all4.aiff`
+BEAT7_LENGTH=`soxi -s ./beat_aiff/beatsound_all7.aiff`
+BEAT8_LENGTH=`soxi -s ./beat_aiff/beatsound_all8.aiff`
 
 echo ${BEAT1_LENGTH} ${BEAT2_LENGTH} ${BEAT3_LENGTH} ${BEAT4_LENGTH} ${BEAT7_LENGTH}
 
 INPUT_FILENAME=`basename ${1} | sed 's/\.[^\.]*$//'`
 USE_BEAT="abc"
 
-LENGTH=`./soxi -s ${1}`
+LENGTH=`soxi -s ${1}`
 if [ ${LENGTH} -gt ${BEAT4_LENGTH} ]; then
 USE_BEAT=7
 elif [ ${LENGTH} -gt ${BEAT3_LENGTH} ]; then
@@ -30,7 +30,7 @@ fi
 OUTPUT_FILENAME="./aiff_all/${INPUT_FILENAME}_all.aiff"
 
 echo "input: ${INPUT_FILENAME}, output: ${OUTPUT_FILENAME}_all.aiff"
-./sox -m ./beat_aiff/beatsound_all${USE_BEAT}.aiff ${1} ${OUTPUT_FILENAME}
+sox -m ./beat_aiff/beatsound_all${USE_BEAT}.aiff ${1} ${OUTPUT_FILENAME}
 result=$?
 
 echo "ttttttt1111111111111iiiiiiiiiiiiiii;;;;;;;;;;;;;:;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;i;iiiiiiiiiiiiiiiii1111111111"
